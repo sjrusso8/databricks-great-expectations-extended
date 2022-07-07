@@ -15,6 +15,28 @@
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC WITH results_explode as (
+# MAGIC   SELECT
+# MAGIC     meta.batch_kwargs.ge_batch_id as batch_id,
+# MAGIC     timestamp(meta.run_id.run_time) as run_time_id,
+# MAGIC     meta.expectation_suite_meta.citations[0].comment.extraContext.notebook_path as notebook_path,
+# MAGIC     meta.expectation_suite_meta.citations[0].comment.tags.clusterId as cluster_id,
+# MAGIC     explode(results) as results
+# MAGIC   FROM
+# MAGIC     delta.`/data-quality-results/`
+# MAGIC )
+# MAGIC SELECT 
+# MAGIC   batch_id,
+# MAGIC   cluster_id,
+# MAGIC   results.expectation_config.expectation_type as expectation_type,
+# MAGIC   IFF(results.success, 'Pass', 'Fail') as success_status,
+# MAGIC   results.*,
+# MAGIC   results.expectation_config.kwargs.*  
+# MAGIC FROM results_explode;
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC CREATE OR REPLACE VIEW default.data_quality_header AS
 # MAGIC SELECT 
 # MAGIC   meta.batch_kwargs.ge_batch_id as batch_id,
