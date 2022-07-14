@@ -25,12 +25,9 @@ class ExtendedSparkDFDataset(SparkDFDataset):
         )
     
     def _create_output_file(self):
-        if os.path.exists(self.file_path):
-            return
-        else:
+        if not os.path.exists(self.file_path):
             try:
                 os.makedirs(os.path.dirname(self.file_path), exist_ok=True)
-                return
             except:
                 raise ValueError(
                     "Failed to create the file path. Please check the user write permissions"
@@ -81,5 +78,3 @@ class ExtendedSparkDFDataset(SparkDFDataset):
         
         self._write_results_to_json(validation_object)
         self._assert_expectations(validation_object)
-        
-        return
