@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "databricks-great-expectations-extended"
+version = "0.1.0"
+description = ""
+authors = ["Steve Russo <64294847+sjrusso8@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "databricks_great_expectations_extended"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+great-expectations = "^0.16.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
