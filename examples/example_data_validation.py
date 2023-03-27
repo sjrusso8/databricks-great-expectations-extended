@@ -1,6 +1,6 @@
 # Databricks notebook source
 # Ensure that Great Expectations is installed
-!pip install great_expectations==0.15.0
+!pip install great_expectations==0.16.3
 
 # COMMAND ----------
 
