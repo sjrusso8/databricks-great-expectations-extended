@@ -22,7 +22,7 @@ df_taxi = (
 # Create a GE DataFrame using new ExtendedSparkDFDataset 
 # Passing the df_taxi dataframe and dbutils
 
-ge_df_taxi = ExtendedSparkDFDataset(df_taxi, dbutils)
+ge_df_taxi = ExtendedSparkDFDataset(df_taxi, dbutils, save_path='/dbfs/tmp/great_expectations/nyctaxi/')
 
 # COMMAND ----------
 
@@ -47,7 +47,7 @@ ge_df_taxi.validate_and_save()
 # COMMAND ----------
 
 # Create the GE object using the ExtendedSparkDFDataset class
-ge_df_taxi = ExtendedSparkDFDataset(df_taxi, dbutils)
+ge_df_taxi = ExtendedSparkDFDataset(df_taxi, dbutils, save_path='/dbfs/tmp/great_expectations/nyctaxi/')
 
 # COMMAND ----------
 
